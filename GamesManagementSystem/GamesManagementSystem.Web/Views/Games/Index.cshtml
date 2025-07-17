@@ -1,0 +1,44 @@
+﻿@model IEnumerable<GamesManagementSystem.Domain.Entities.Game>
+
+@{
+    ViewData["Title"] = "Game Library";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Game</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Banner</th>
+            <th>Name</th>
+            <th>Developed By</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(game.BannerImagePath))
+                    {
+                        <img src="@game.BannerImagePath" alt="@game.Name" style="max-width: 100px; height: auto;" />
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => game.Name)</td>
+                <td>@Html.DisplayFor(modelItem => game.DevelopedBy)</td>
+                <td>@game.ReleaseDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@game.Id" class="btn btn-sm btn-info">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@game.Id" class="btn btn-sm btn-secondary">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@game.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

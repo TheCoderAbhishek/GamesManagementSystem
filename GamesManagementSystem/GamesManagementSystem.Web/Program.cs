@@ -2,6 +2,8 @@ using GamesManagementSystem.Application.Interfaces;
 using GamesManagementSystem.Infrastructure.Data;
 using GamesManagementSystem.Infrastructure.Repositories;
 using GamesManagementSystem.Infrastructure.Services;
+using GamesManagementSystem.Web.Filters;
+using GamesManagementSystem.Web.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 namespace GamesManagementSystem.Web
@@ -23,6 +25,10 @@ namespace GamesManagementSystem.Web
             builder.Services.AddScoped<IGameRepository, GameRepository>();
             builder.Services.AddScoped<IFileService, FileService>();
 
+            builder.Services.AddMemoryCache();
+
+            builder.Services.AddControllersWithViews(options => options.Filters.Add<CustomExceptionFilter>());
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -36,6 +42,8 @@ namespace GamesManagementSystem.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseRouting();
 

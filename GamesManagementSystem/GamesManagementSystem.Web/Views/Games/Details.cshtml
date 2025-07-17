@@ -1,0 +1,32 @@
+﻿@model GamesManagementSystem.Domain.Entities.Game
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@(Model.BannerImagePath ?? "/images/default-banner.png")" class="img-fluid rounded" alt="Banner for @Model.Name" />
+        </div>
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-3">Developed By</dt>
+                <dd class="col-sm-9">@Model.DevelopedBy</dd>
+
+                <dt class="col-sm-3">Release Date</dt>
+                <dd class="col-sm-9">@Model.ReleaseDate.ToShortDateString()</dd>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

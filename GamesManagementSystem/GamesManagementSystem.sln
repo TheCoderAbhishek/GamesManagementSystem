@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesManagementSystem.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesManagementSystem.Infrastructure", "GamesManagementSystem.Infrastructure\GamesManagementSystem.Infrastructure.csproj", "{150D3612-3050-4BAF-98EE-302F3A03FB4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesManagementSystem.Tests", "GamesManagementSystem.Tests\GamesManagementSystem.Tests.csproj", "{CC9436E2-338A-4C97-8B3E-9D5DB2FF632A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{150D3612-3050-4BAF-98EE-302F3A03FB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{150D3612-3050-4BAF-98EE-302F3A03FB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{150D3612-3050-4BAF-98EE-302F3A03FB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC9436E2-338A-4C97-8B3E-9D5DB2FF632A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9436E2-338A-4C97-8B3E-9D5DB2FF632A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9436E2-338A-4C97-8B3E-9D5DB2FF632A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9436E2-338A-4C97-8B3E-9D5DB2FF632A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

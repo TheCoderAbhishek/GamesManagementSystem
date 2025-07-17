@@ -13,6 +13,11 @@ namespace GamesManagementSystem.Infrastructure.Repositories
 
         private const string GamesCacheKey = "AllGames";
 
+        public async Task<Game?> GetByIdAsync(int id)
+        {
+            return await _context.Games.FindAsync(id);
+        }
+
         public async Task AddAsync(Game game)
         {
             await _context.Games.AddAsync(game);
@@ -38,6 +43,24 @@ namespace GamesManagementSystem.Infrastructure.Repositories
             _memoryCache.Set(GamesCacheKey, games, cacheEntryOptions);
 
             return games;
+        }
+
+        public async Task UpdateAsync(Game game)
+        {
+            _context.Games.Update(game);
+            await _context.SaveChangesAsync();
+            _memoryCache.Remove(GamesCacheKey);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game != null)
+            {
+                _context.Games.Remove(game);
+                await _context.SaveChangesAsync();
+                _memoryCache.Remove(GamesCacheKey);
+            }
         }
     }
 }

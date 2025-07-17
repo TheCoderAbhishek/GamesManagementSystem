@@ -1,12 +1,26 @@
+using GamesManagementSystem.Application.Interfaces;
+using GamesManagementSystem.Infrastructure.Data;
+using GamesManagementSystem.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace GamesManagementSystem.Web
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // 1. Register the DbContext
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            // 2. Register our repository for DI
+            builder.Services.AddScoped<IGameRepository, GameRepository>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -15,7 +29,6 @@ namespace GamesManagementSystem.Web
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
